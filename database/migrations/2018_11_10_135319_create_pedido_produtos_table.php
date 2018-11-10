@@ -15,6 +15,12 @@ class CreatePedidoProdutosTable extends Migration
     {
         Schema::create('pedido_produtos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('produto_id')->unsigned();
+            $table->integer('pedido_id')->unsigned();
+            $table->enum('status', ['RE', 'PA', 'CA']); // Reservado, Pago, Cancelado
+            $table->decimal('valor', 10, 2)->default(0);
+            $table->foreign('produto_id')->references('id')->on('produtos');
+            $table->foreign('pedido_id')->references('id')->on('pedidos');
             $table->timestamps();
         });
     }
