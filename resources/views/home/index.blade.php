@@ -9,7 +9,7 @@
 			<div class="col s12 m6 l4">
 				<div class="card medium">
 					<div class="card-image">
-						<img src="{{ $produto->imagem }}">
+						<img src="{{URL::asset('/image/uploads/produtos/')}}/{{ $produto->imagem }}">
 					</div>
 					
 					<div class="card-content">

@@ -13,7 +13,7 @@
 
 Route::get('/', 'HomeController@index')->name('index');
 
-Route::get('/produto/{id}', 'HomeController@produto')->name('produto');
+Route::get('/produto/{id}', 'ProdutosController@view')->name('produto');
 
 Route::get('/carrinho', 'CarrinhoController@index')->name('carrinho.index');
 
