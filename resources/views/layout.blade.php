@@ -24,6 +24,7 @@
                 </a>
                 
                 <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ route('pedidos.index') }}">Pedidos</a></li>
                     <li><a href="{{ route('carrinho.index') }}">Carrinho</a></li>
                     
                     @if (Auth::guest())

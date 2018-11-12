@@ -27,6 +27,6 @@ Route::delete('/carrinho/remover', 'CarrinhoController@remover')->name('carrinho
 
 Route::post('/carrinho/concluir', 'CarrinhoController@concluir')->name('carrinho.concluir');
 
-Route::get('/carrinho/compras', 'CarrinhoController@compras')->name('carrinho.compras');
+Route::get('/pedidos/index', 'PedidosController@index')->name('pedidos.index');
 
-Route::post('/carrinho/cancelar', 'CarrinhoController@cancelar')->name('carrinho.cancelar');
+Route::post('/pedidos/cancelar', 'PedidosController@cancelar')->name('pedidos.cancelar');
