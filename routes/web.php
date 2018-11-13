@@ -27,6 +27,10 @@ Route::delete('/carrinho/remover', 'CarrinhoController@remover')->name('carrinho
 
 Route::post('/carrinho/concluir', 'CarrinhoController@concluir')->name('carrinho.concluir');
 
+Route::get('/carrinho/quantidade-incrementar/{id}', 'CarrinhoController@quantidade_incrementar')->name('carrinho.quantidade.incrementar');
+
+Route::get('/carrinho/quantidade-decrementar/{id}', 'CarrinhoController@quantidade_decrementar')->name('carrinho.quantidade.decrementar');
+
 Route::get('/pedidos/index', 'PedidosController@index')->name('pedidos.index');
 
 Route::post('/pedidos/cancelar', 'PedidosController@cancelar')->name('pedidos.cancelar');

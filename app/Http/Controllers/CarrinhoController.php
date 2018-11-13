@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Produto;
+use App\Carrinho;
 
 class CarrinhoController extends Controller
 {
@@ -51,5 +52,55 @@ class CarrinhoController extends Controller
         $request->session()->flash('mensagem-sucesso', 'Produto adicionado ao carrinho com sucesso!');
         
         return redirect()->route('carrinho.index');
+    }
+
+    /**
+     * Incrementar quantidade do produto
+     *
+     * @return string/json
+     */
+    public function quantidade_incrementar($id = null)
+    {
+        $request = Request();
+        
+        $retorno = [];
+
+        if (!is_null($id)) {
+            $quantidade = ($request->query('quantidade')) ? $request->query('quantidade') : 1;
+            
+            ++$quantidade;
+
+            $carrinho = $request->session()->get('Carrinho');
+
+            $carrinho[$id]['quantidade'] = $quantidade;
+
+            $request->session()->put('Carrinho', $carrinho);
+
+            $retorno = [
+                'quantidade'    => $quantidade,
+                'produto_total' => 'R$ ' . number_format(($quantidade * $carrinho[$id]['preco']), 2, ',', '.'),
+                'pedido_total'  => 'R$ ' . number_format(Carrinho::totalPedido(), 2, ',', '.')
+            ];
+        }
+
+        return response()->json($retorno);
+    }
+
+    /**
+     * Decrementar Quantidade do produto
+     *
+     * @return void
+     */
+    public function quantidade_decrementar($id = null)
+    {
+        $request = Request();
+
+        $retorno = [];
+
+        if (!is_null($id)) {
+
+        }
+
+        return response()->json($retorno);
     }
 }

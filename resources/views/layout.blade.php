@@ -71,6 +71,7 @@
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     @stack('scripts')
     <script type="text/javascript">
         $( document ).ready(function(){

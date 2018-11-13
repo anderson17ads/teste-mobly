@@ -5,7 +5,7 @@
 
 <div class="container carrinho">
     <div class="row">
-        <h3>Carrinho</h3>
+        <h3>Meu Carrinho</h3>
         <hr/>
         
         @if (Session::has('mensagem-sucesso'))
@@ -36,21 +36,19 @@
                         $totalPedido = 0;
                     @endphp
                     
-                    @foreach ($itens as $item)
-                        <tr>
+                    @foreach ($itens as $id => $item)
+                        <tr data-carrinho-item="{{ $id }}">
                             <td>
                                 <img src="{{URL::asset('/image/uploads/produtos/')}}/{{ $item['imagem'] }}">
                             </td>
                             <td class="center-align">
 
                                 <div class="carrinho-quantidade">
-                                    <a href="" class="hidden" data-carrinho-url></a>
-                                    
-                                    <a class="carrinho-setas aumentar" data-carrinho-quantidade-mais></a>
+                                    <a href="{{ route('carrinho.quantidade.incrementar', ['id' => $id]) }}" class="carrinho-setas aumentar" data-carrinho-quantidade-incrementar></a>
 
-                                    <a class="carrinho-setas diminuir" data-carrinho-quantidade-menos></a>
+                                    <a href="{{ route('carrinho.quantidade.decrementar', ['id' => $id]) }}" class="carrinho-setas diminuir" data-carrinho-quantidade-decrementar></a>
 
-                                    <input type="text" value="1" data-carrinho-quantidade-input>          
+                                    <input type="text" value="{{ $item['quantidade'] }}" data-carrinho-quantidade-input>          
                                 </div>
 
                                 <a 
@@ -71,7 +69,7 @@
                                 $totalPedido += $totalProduto;
                             @endphp
                             
-                            <td>R$ {{ number_format($totalProduto, 2, ',', '.') }}</td>
+                            <td data-carrinho-produto-total>R$ {{ number_format($totalProduto, 2, ',', '.') }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -80,7 +78,7 @@
             <div class="row">
                 <strong class="col offset-l6 offset-m6 offset-s6 l4 m4 s4 right-align">Total do pedido: </strong>
                 
-                <span class="col l2 m2 s2">
+                <span class="col l2 m2 s2" data-carrinho-pedido-total>
                     R$ {{ number_format($totalPedido, 2, ',', '.') }}
                 </span>
             </div>
@@ -109,7 +107,6 @@
 </div>
 
 @push('scripts')
-    <script type="text/javascript" src="/js/carrinho.js"></script>
 @endpush
 
 @endsection
