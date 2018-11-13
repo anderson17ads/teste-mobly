@@ -10,13 +10,13 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
 
 </head>
 <body>
     <header>
         <nav>
-            <div class="nav-wrapper light-blue row">
+            <div class="nav-wrapper row">
                 <a href="{{ route('index') }}" class="brand-logo col offset-l1">Teste Carrinho Mobly</a>
                 
                 <a href="#" data-activates="mobile-menu" class="button-collapse">
@@ -60,7 +60,7 @@
             </form>
         @endif
     </main>
-    <footer class="page-footer blue">
+    <footer class="page-footer">
         <div class="footer-copyright">
             <div class="container">
                 Teste Carrinho Mobly

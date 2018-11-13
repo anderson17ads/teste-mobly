@@ -3,7 +3,7 @@
 
 @section('pagina_conteudo')
 
-<div class="container">
+<div class="container carrinho">
     <div class="row">
         <h3>Carrinho</h3>
         <hr/>
@@ -24,7 +24,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>&nbsp;</th>
                         <th>Qtd</th>
                         <th>Produto</th>
                         <th>Preço</th>
@@ -42,20 +42,15 @@
                                 <img src="{{URL::asset('/image/uploads/produtos/')}}/{{ $item['imagem'] }}">
                             </td>
                             <td class="center-align">
-                                <div class="center-align">
-                                    <a 
-                                        class="col l4 m4 s4" 
-                                        href="#" 
-                                        <i class="material-icons small">remove_circle_outline</i>
-                                    </a>
 
-                                    <span class="col l4 m4 s4"> {{ $item['quantidade'] }} </span>
+                                <div class="carrinho-quantidade">
+                                    <a href="" class="hidden" data-carrinho-url></a>
                                     
-                                    <a 
-                                        class="col l4 m4 s4" 
-                                        href="#" 
-                                        <i class="material-icons small">add_circle_outline</i>
-                                    </a>
+                                    <a class="carrinho-setas aumentar" data-carrinho-quantidade-mais></a>
+
+                                    <a class="carrinho-setas diminuir" data-carrinho-quantidade-menos></a>
+
+                                    <input type="text" value="1" data-carrinho-quantidade-input>          
                                 </div>
 
                                 <a 
@@ -91,7 +86,15 @@
             </div>
             
             <div class="row">
-                <a class="btn-large tooltipped col l4 s4 m4 offset-l2 offset-s2 offset-m2" data-position="top" data-delay="50" data-tooltip="Voltar a página inicial para continuar comprando?" href="{{ route('index') }}">Continuar comprando</a>
+                <a 
+                    class="btn-large tooltipped col l4 s4 m4 offset-l2 offset-s2 offset-m2" 
+                    data-position="top" 
+                    data-delay="50" 
+                    data-tooltip="Voltar a página inicial para continuar comprando?" 
+                    href="{{ route('index') }}">
+                    Continuar comprando
+                </a>
+                
                 <form method="POST" action="{{ route('carrinho.concluir') }}">
                     {{ csrf_field() }}
                     <button type="submit" class="btn-large blue col offset-l1 offset-s1 offset-m1 l5 s5 m5 tooltipped" data-position="top" data-delay="50" data-tooltip="Adquirir os produtos concluindo a compra?">
@@ -104,18 +107,6 @@
         @endif
     </div>
 </div>
-
-<form id="form-remover-produto" method="POST" action="{{ route('carrinho.remover') }}">
-    {{ csrf_field() }}
-    {{ method_field('DELETE') }}
-    <input type="hidden" name="produto_id">
-    <input type="hidden" name="item">
-</form>
-
-<form id="form-adicionar-produto" method="POST" action="{{ route('carrinho.adicionar') }}">
-    {{ csrf_field() }}
-    <input type="hidden" name="id">
-</form>
 
 @push('scripts')
     <script type="text/javascript" src="/js/carrinho.js"></script>
