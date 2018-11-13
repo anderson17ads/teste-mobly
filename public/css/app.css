@@ -17,10 +17,41 @@ main {
 
 nav {
   background: inherit;
+  margin-bottom: 20px;
 }
 
 nav .nav-wrapper a {
   color: #ff4600;
+}
+
+.produto-detalhe-detalhe {
+  margin: 20px 0 0 0;
+}
+
+.produto-detalhe-detalhe h3 {
+  margin: 0 0 10px 0;
+}
+
+.produto-detalhe-detalhe h4 {
+  margin: 0;
+}
+
+.produto-detalhe-detalhe button {
+  margin: 20px 0;
+}
+
+.produto-detalhe-descricao {
+  margin: 10px 0;
+}
+
+.produto-detalhe-descricao h2 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  font-size: 24px;
+}
+
+.produto-detalhe-descricao p {
+  margin: 0;
 }
 
 .carrinho table td:first-child {
