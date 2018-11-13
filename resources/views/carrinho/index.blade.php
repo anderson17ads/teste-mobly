@@ -44,9 +44,15 @@
                             <td class="center-align">
 
                                 <div class="carrinho-quantidade">
-                                    <a href="{{ route('carrinho.quantidade.incrementar', ['id' => $id]) }}" class="carrinho-setas aumentar" data-carrinho-quantidade-incrementar></a>
+                                    <a 
+                                        href="{{ route('carrinho.quantidade', ['id' => $id]) }}" 
+                                        class="carrinho-setas aumentar" 
+                                        data-carrinho-quantidade="1"></a>
 
-                                    <a href="{{ route('carrinho.quantidade.decrementar', ['id' => $id]) }}" class="carrinho-setas diminuir" data-carrinho-quantidade-decrementar></a>
+                                    <a 
+                                        href="{{ route('carrinho.quantidade', ['id' => $id]) }}" 
+                                        class="carrinho-setas diminuir" 
+                                        data-carrinho-quantidade="0"></a>
 
                                     <input type="text" value="{{ $item['quantidade'] }}" data-carrinho-quantidade-input>          
                                 </div>

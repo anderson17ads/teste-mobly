@@ -59,46 +59,14 @@ class CarrinhoController extends Controller
      *
      * @return string/json
      */
-    public function quantidade_incrementar($id = null)
+    public function quantidade($id = null)
     {
-        $request = Request();
-        
         $retorno = [];
 
-        if (!is_null($id)) {
-            $quantidade = ($request->query('quantidade')) ? $request->query('quantidade') : 1;
-            
-            ++$quantidade;
-
-            $carrinho = $request->session()->get('Carrinho');
-
-            $carrinho[$id]['quantidade'] = $quantidade;
-
-            $request->session()->put('Carrinho', $carrinho);
-
-            $retorno = [
-                'quantidade'    => $quantidade,
-                'produto_total' => 'R$ ' . number_format(($quantidade * $carrinho[$id]['preco']), 2, ',', '.'),
-                'pedido_total'  => 'R$ ' . number_format(Carrinho::totalPedido(), 2, ',', '.')
-            ];
-        }
-
-        return response()->json($retorno);
-    }
-
-    /**
-     * Decrementar Quantidade do produto
-     *
-     * @return void
-     */
-    public function quantidade_decrementar($id = null)
-    {
         $request = Request();
 
-        $retorno = [];
-
         if (!is_null($id)) {
-
+            $retorno = Carrinho::quantidade($request, $id, $request->query('tipo'));
         }
 
         return response()->json($retorno);
