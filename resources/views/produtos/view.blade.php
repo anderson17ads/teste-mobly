@@ -18,7 +18,8 @@
             </div>
         </div>
         <div class="section col s12 m6 l6">
-            <h4 class="left col l6"> R$ {{ number_format($produto->valor, 2, ',', '.') }} </h4>
+            <h4 class="left col l6"> R$ {{ number_format($produto->preco, 2, ',', '.') }} </h4>
+            
             <form method="POST" action="{{ route('carrinho.adicionar') }}">
                 {{ csrf_field() }}
                 <input type="hidden" name="id" value="{{ $produto->id }}">
