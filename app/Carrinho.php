@@ -59,4 +59,25 @@ class Carrinho extends Model
             'pedido_total'  => 'R$ ' . number_format(parent::totalPedido(), 2, ',', '.')
         ];
     }
+
+    /**
+     * Remove um item do carrinho
+     *
+     * @param int $id
+     *
+     * @return string/json
+     */
+    public static function remover($id = null)
+    {
+        if (!is_null($id)) {
+            $carrinho = Session::get('Carrinho');
+            unset($carrinho[$id]);
+
+            Session::put('Carrinho', $carrinho);
+        }
+        
+        return [
+            'pedido_total'  => 'R$ ' . number_format(parent::totalPedido(), 2, ',', '.')
+        ];
+    }
 }

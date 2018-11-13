@@ -109,6 +109,18 @@ __webpack_require__(2);
       produtoTotal.text(response.produto_total);
       pedidoTotal.text(response.pedido_total);
     });
+  }).on('click', '[data-carrinho-remover]', function (e) {
+    e.preventDefault();
+
+    var $this = $(this),
+        url = $this.attr('href'),
+        pedidoTotal = $('[data-carrinho-pedido-total]');
+
+    $this.parents('[data-carrinho-item]').remove();
+
+    $.getJSON(url, function (response) {
+      pedidoTotal.text(response.pedido_total);
+    });
   });
 })();
 

@@ -23,9 +23,9 @@ Route::get('/carrinho/adicionar', function() {
 
 Route::post('/carrinho/adicionar', 'CarrinhoController@adicionar')->name('carrinho.adicionar');
 
-Route::delete('/carrinho/remover', 'CarrinhoController@remover')->name('carrinho.remover');
-
 Route::post('/carrinho/concluir', 'CarrinhoController@concluir')->name('carrinho.concluir');
+
+Route::get('/carrinho/remover/{id}', 'CarrinhoController@remover')->name('carrinho.remover');
 
 Route::get('/carrinho/quantidade/{id}', 'CarrinhoController@quantidade')->name('carrinho.quantidade');
 

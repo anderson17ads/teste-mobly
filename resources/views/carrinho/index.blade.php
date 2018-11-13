@@ -58,11 +58,13 @@
                                 </div>
 
                                 <a 
-                                    href="#" 
+                                    href="{{ route('carrinho.remover', ['id' => $id]) }}" 
                                     class="tooltipped" 
                                     data-position="right" 
                                     data-delay="50" 
-                                    data-tooltip="Retirar produto do carrinho?">Retirar produto
+                                    data-tooltip="Retirar produto do carrinho?"
+                                    data-carrinho-remover>
+                                    Retirar produto
                                 </a>
                             </td>
 

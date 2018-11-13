@@ -65,9 +65,23 @@ class CarrinhoController extends Controller
 
         $request = Request();
 
-        if (!is_null($id)) {
-            $retorno = Carrinho::quantidade($request, $id, $request->query('tipo'));
-        }
+        if (!is_null($id)) $retorno = Carrinho::quantidade($request, $id, $request->query('tipo'));
+
+        return response()->json($retorno);
+    }
+
+    /**
+     * Remover item do carrinho
+     *
+     * @param int $id
+     *
+     * @return bool
+     */
+    public function remover($id = null)
+    {
+        $retorno = [];
+
+        if (!is_null($id)) $retorno = Carrinho::remover($id);
 
         return response()->json($retorno);
     }
