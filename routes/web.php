@@ -23,11 +23,13 @@ Route::get('/carrinho/adicionar', function() {
 
 Route::post('/carrinho/adicionar', 'CarrinhoController@adicionar')->name('carrinho.adicionar');
 
-Route::post('/carrinho/concluir', 'CarrinhoController@concluir')->name('carrinho.concluir');
-
 Route::get('/carrinho/remover/{id}', 'CarrinhoController@remover')->name('carrinho.remover');
 
 Route::get('/carrinho/quantidade/{id}', 'CarrinhoController@quantidade')->name('carrinho.quantidade');
+
+Route::get('/pedidos/dados', 'PedidosController@dados')->name('pedidos.dados');
+
+Route::post('/pedidos/concluir', 'PedidosController@concluir')->name('pedidos.concluir');
 
 Route::get('/pedidos/index', 'PedidosController@index')->name('pedidos.index');
 
