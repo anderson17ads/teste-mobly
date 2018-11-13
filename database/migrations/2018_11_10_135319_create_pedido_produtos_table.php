@@ -19,6 +19,7 @@ class CreatePedidoProdutosTable extends Migration
             $table->integer('pedido_id')->unsigned();
             $table->enum('status', ['RE', 'PA', 'CA']); // Reservado, Pago, Cancelado
             $table->decimal('valor', 10, 2)->default(0);
+            $table->integer('quantidade')->unsigned();
             $table->foreign('produto_id')->references('id')->on('produtos');
             $table->foreign('pedido_id')->references('id')->on('pedidos');
             $table->timestamps();

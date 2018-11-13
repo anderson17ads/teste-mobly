@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col l10 offset-l1 s12 m12">
-            <h4>Cadastro de usuário</h4>
+            <h4>Cadastra-se</h4>
             
             <form method="POST" action="{{ url('/register') }}">
                 {{ csrf_field() }}

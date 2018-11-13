@@ -5,7 +5,7 @@
 
 <div class="container carrinho">
     <div class="row">
-        <h3>Dados</h3>
+        <h3>Finalizar Pedido</h3>
         <hr/>
         
         @include('carrinho._itens')
@@ -16,7 +16,15 @@
             {{ csrf_field() }}
             
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s4">
+                    <input id="cep" type="text" name="cep" value="{{ old('cep') }}" class="validate {{ $errors->has('cep') ? ' invalid' : '' }}" required autofocus>
+                    
+                    <label for="cep" data-error="{{ $errors->has('cep') ? $errors->first('cep') : null }}" >
+                        Cep
+                    </label>
+                </div>
+
+                <div class="input-field col s4">
                     <input id="endereco" type="text" name="endereco" value="{{ old('endereco') }}" class="validate {{ $errors->has('endereco') ? ' invalid' : '' }}" required autofocus>
                     
                     <label for="endereco" data-error="{{ $errors->has('endereco') ? $errors->first('endereco') : null }}" >
@@ -32,7 +40,7 @@
                     </label>
                 </div>
 
-                <div class="input-field col s4">
+                <div class="input-field col s2">
                     <input id="complemento" type="text" name="complemento" value="{{ old('complemento') }}" class="validate {{ $errors->has('complemento') ? ' invalid' : '' }}" autofocus>
                     
                     <label for="complemento" data-error="{{ $errors->has('complemento') ? $errors->first('complemento') : null }}" >
