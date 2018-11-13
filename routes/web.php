@@ -32,3 +32,5 @@ Route::get('/carrinho/quantidade/{id}', 'CarrinhoController@quantidade')->name('
 Route::get('/pedidos/index', 'PedidosController@index')->name('pedidos.index');
 
 Route::post('/pedidos/cancelar', 'PedidosController@cancelar')->name('pedidos.cancelar');
+
+Auth::routes();
