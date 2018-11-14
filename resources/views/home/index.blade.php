@@ -5,6 +5,13 @@
 
 <div class="container">
 	<div class="row">
+
+		<div class="home-busca col center s12 m12 l12">
+			<h3>Faça sua busca pelos melhores produtos</h3>
+			
+			@include('busca._form_busca')
+		</div>
+
 		@foreach($produtos as $produto)
 			<div class="col s12 m6 l4">
 				<div class="card medium">

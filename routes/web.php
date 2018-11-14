@@ -13,6 +13,8 @@
 
 Route::get('/', 'HomeController@index')->name('index');
 
+Route::get('/busca', 'BuscaController@index')->name('busca');
+
 Route::get('/produto/{id}', 'ProdutosController@view')->name('produto');
 
 Route::get('/carrinho', 'CarrinhoController@index')->name('carrinho.index');
