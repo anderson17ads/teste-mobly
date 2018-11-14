@@ -129,6 +129,7 @@
                             <th>Produto</th>
                             <th>Valor</th>
                             <th>Total</th>
+                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -154,12 +155,23 @@
                                 <td>R$ {{ number_format($pedidoProduto->valor, 2, ',', '.') }}</td>
                                 
                                 <td>R$ {{ number_format($totalProduto, 2, ',', '.') }}</td>
+
+                                <td>
+                                    <a 
+                                        href="{{ route('pedidos.detalhe', ['id' => $pedido->id]) }}"
+                                        class="btn-large red col l12 s12 m12 tooltipped"
+                                        data-position="bottom"
+                                        data-delay="50"
+                                        data-tooltip="Detalhe do pedido">
+                                        Detalhes
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3"></td>
+                            <td colspan="4"></td>
                             <td><strong>Total do pedido</strong></td>
                             <td>R$ {{ number_format($totalPedido, 2, ',', '.') }}</td>
                         </tr>
