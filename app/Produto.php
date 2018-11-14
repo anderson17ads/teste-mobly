@@ -11,4 +11,14 @@ class Produto extends Model
         'imagem',
         'preco'
     ];
+
+    /**
+     * Recupera as características do produto
+     *
+     * @return array
+     */
+    public function caracteristicas()
+    {
+    	return $this->hasMany('App\ProdutoCaracteristica');
+    }
 }

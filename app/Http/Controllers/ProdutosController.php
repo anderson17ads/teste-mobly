@@ -9,16 +9,14 @@ class ProdutosController extends Controller
 {
     public function view($id = null)
     {
-		if(!empty($id)) {
-			$produto = Produto::where([
-				'id'    => $id,
-			])->first();
-			
-			if( !empty($produto) ) {
-				return view('produtos.view', compact('produto'));
-			}
-		}
+    	if (is_null($id)) return redirect()->route('index');
 
-		return redirect()->route('index');
+		$produto = Produto::where([
+			'id'    => $id,
+		])->first();
+		
+		if($produto) {
+			return view('produtos.view', compact('produto'));
+		}
     }
 }

@@ -25,9 +25,21 @@
             </form>
         </div>
 
-        <div class="produto-detalhe-descricao section col s12 m6 l6">
-            <h2>Descrição</h2>
-            <p>{!! $produto->descricao !!}</p>
+        <div class="section col s12 m6 l6">
+            <div class="produto-detalhe-descricao">
+                <h2>Descrição</h2>
+                <p>{!! $produto->descricao !!}</p>
+            </div>
+    
+            @if ($produto->caracteristicas)
+                <div class="produto-detalhe-descricao">
+                    <h2>Caracteristicas</h2>
+                    
+                    @foreach ($produto->caracteristicas as $caracteristica)
+                        <p>{{ $caracteristica->caracteristica->nome }}</p>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
 </div>

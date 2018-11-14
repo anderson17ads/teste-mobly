@@ -25,7 +25,7 @@ class Pedido extends Model
     }
 
     /**
-     * Carregando os produtos relacionados
+     * Recupera os produtos relacionados
      *
      * @return array
      */
