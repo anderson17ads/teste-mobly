@@ -13,9 +13,16 @@
 
 Route::get('/', 'HomeController@index')->name('index');
 
+// Busca
 Route::get('/busca', 'BuscaController@index')->name('busca');
 
+// Produto
 Route::get('/produto/{id}', 'ProdutosController@view')->name('produto');
+
+// Categorias
+Route::get('/categoria/{id}', 'CategoriasController@view')->name('categoria');
+
+// Carrinho
 
 Route::get('/carrinho', 'CarrinhoController@index')->name('carrinho.index');
 
@@ -29,6 +36,7 @@ Route::get('/carrinho/remover/{id}', 'CarrinhoController@remover')->name('carrin
 
 Route::get('/carrinho/quantidade/{id}', 'CarrinhoController@quantidade')->name('carrinho.quantidade');
 
+// Pedidos
 Route::get('/pedidos/dados', 'PedidosController@dados')->name('pedidos.dados');
 
 Route::post('/pedidos/concluir', 'PedidosController@concluir')->name('pedidos.concluir');

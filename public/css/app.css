@@ -15,6 +15,11 @@ main {
           flex: 1 0 auto;
 }
 
+h3 {
+  font-size: 30px;
+  color: #ff4600;
+}
+
 .home-busca h3 {
   color: #ff4600;
   font-size: 30px;
@@ -24,6 +29,27 @@ main {
   background: inherit;
   border: none;
   color: #ff4600;
+}
+
+.home-categorias {
+  margin-bottom: 20px;
+}
+
+.home-categorias .home-categorias-item {
+  text-align: center;
+}
+
+.home-categorias .home-categorias-item a {
+  color: #ff4600;
+  font-size: 24px;
+}
+
+.home-categorias .home-categorias-item a p {
+  margin: 0;
+}
+
+.home-categorias .home-categorias-item a img {
+  border-radius: 50%;
 }
 
 nav {

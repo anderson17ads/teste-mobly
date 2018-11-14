@@ -10,3 +10,24 @@
 		color: $color-main;
 	}
 }
+
+.home-categorias {
+	margin-bottom: 20px;
+
+	.home-categorias-item {
+		text-align: center;
+		
+		a {
+			color: $color-main;
+			font-size: 24px;
+
+			p {
+				margin: 0;
+			}
+
+			img {
+				border-radius: 50%;
+			}
+		}
+	}
+}

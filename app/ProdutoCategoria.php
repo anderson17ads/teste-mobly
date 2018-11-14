@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProdutoCaracteristica extends Model
+class ProdutoCategoria extends Model
 {
 	protected $fillable = [
         'produto_id',
-        'caracteristica_id'
+        'categoria_id'
     ];
 
     /**
@@ -22,12 +22,12 @@ class ProdutoCaracteristica extends Model
     }
 
     /**
-     * Interligando a caracteristica
+     * Interligando a categoria
      *
      * @return array
      */
-    public function caracteristica()
+    public function categoria()
     {
-        return $this->belongsTo('App\Caracteristica', 'caracteristica_id', 'id');
+        return $this->belongsTo('App\Categoria', 'categoria_id', 'id');
     }
 }
