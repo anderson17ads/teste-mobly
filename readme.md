@@ -25,3 +25,10 @@ sudo docker-compose up
 As configurações de banco de dados está no arquivo ".env" na pasta raiz.
 
 Nesse arquivo tem uma constante chamada "DB_HOST", o valor dela está como "mysql", uso esse valor porque estou refenrenciando do container do Docker, caso o cliente não usar o Docker, só mudar para "127.0.0.1".
+
+## Dependências
+
+Estou usando o composer para gerênciar minhas dependências, para instalar, rode o seguinte comando:
+
+composer install
+
