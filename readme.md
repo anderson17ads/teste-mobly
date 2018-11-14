@@ -20,7 +20,7 @@ Desenvolvi o projeto usando containers do Docker, caso o cliente tenha o Docker 
 
 sudo docker-compose up
 
-Configurações
+## Configurações
 
 As configurações de banco de dados está no arquivo ".env" na pasta raiz.
 
