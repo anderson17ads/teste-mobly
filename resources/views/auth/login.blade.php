@@ -25,12 +25,6 @@
                             Entrar
                         </button>
                     </div>
-
-                    <div class="row">
-                        <a class="" href="{{ url('/password/reset') }}">
-                            Esqueceu sua senha?
-                        </a>
-                    </div>
                 </form>
             </div>
         </div>
