@@ -16,6 +16,11 @@ class PedidosController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Listagem dos pedidos
+     *
+     * @return void
+     */
     public function index()
     {
         $pedidos = Pedido::where([
@@ -31,19 +36,28 @@ class PedidosController extends Controller
         return view('pedidos.index', compact('pedidos', 'cancelados'));
     }
 
+    /**
+     * Detalhe do pedido
+     *
+     * @return void
+     */
     public function detalhe($id = null)
     {
         $pedido = Pedido::where([
-            'id' => $id
+            'id'      => $id,
+            'user_id' => Auth::id()
         ])->first();
 
-        // dd($pedido->enderecoEntrega);
-        
         if (!$pedido) return redirect()->route('pedidos.index');
 
         return view('pedidos.detalhe', compact('pedido'));
     }
 
+    /**
+     * Dados de entrega
+     *
+     * @return void
+     */
     public function dados(Request $request)
     {
         $itens = ($request->session()->has('Carrinho'))
@@ -55,6 +69,7 @@ class PedidosController extends Controller
     /**
      * Conclui um pedido
      *
+     * @return void
      */
     public function concluir()
     {
@@ -91,5 +106,37 @@ class PedidosController extends Controller
             
             return redirect()->route('pedidos.index');
         }
+    }
+
+    /**
+     * Cancelar um pedido
+     *
+     * @return void
+     */
+    public function cancelar()
+    {
+        $this->middleware('VerifyCsrfToken');
+
+        $request = Request();
+
+        $id = $request->input('pedido_id');
+
+        $pedido = Pedido::where([
+            'id' => $id
+        ])->exists();
+
+        if ($pedido) {
+            Pedido::where([
+                'id' => $id
+            ])->update([
+                'status' => 'CA'
+            ]);
+
+            $request->session()->flash('mensagem-sucesso', 'Pedido cancelados com sucesso!');
+        } else {
+            $request->session()->flash('mensagem-falha', 'Pedido não encontrado!');
+        }
+
+        return redirect()->route('pedidos.index');
     }
 }

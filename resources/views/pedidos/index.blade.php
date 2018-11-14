@@ -33,11 +33,11 @@
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="2"></th>
                                 <th>Qtd</th>
                                 <th>Produto</th>
                                 <th>Valor</th>
                                 <th>Total</th>
+                                <th>&nbsp;</th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -53,18 +53,7 @@
                                 $totalPedido += $totalProduto;
                             @endphp
 
-                            <tr>
-                                <td class="center">
-                                    @if($pedidoProduto->status == 'PA')
-                                        <p class="center">
-                                            <input type="checkbox" id="item-{{ $pedidoProduto->id }}" name="id[]" value="{{ $pedidoProduto->id }}" />
-                                            <label for="item-{{ $pedidoProduto->id }}"></label>
-                                        </p>
-                                    @else
-                                        <strong class="red-text">CANCELADO</strong>
-                                    @endif
-                                </td>
-                                
+                            <tr>                               
                                 <td>
                                     <img width="100" src="{{URL::asset('/image/uploads/produtos/')}}/{{ $pedidoProduto->produto->imagem }}">
                                 </td>
@@ -76,6 +65,17 @@
                                 <td>R$ {{ number_format($pedidoProduto->valor, 2, ',', '.') }}</td>
                                 
                                 <td>R$ {{ number_format($totalProduto, 2, ',', '.') }}</td>
+
+                                <td>
+                                    <button 
+                                        type="submit" 
+                                        class="btn-large red col l12 s12 m12 tooltipped" 
+                                        data-position="bottom" 
+                                        data-delay="50" 
+                                        data-tooltip="Cancelar itens selecionados">
+                                        Cancelar
+                                    </button>
+                                </td>
 
                                 <td>
                                     <a 
@@ -96,28 +96,15 @@
                                 <td><strong>Total do pedido</strong></td>
                                 <td>R$ {{ number_format($totalPedido, 2, ',', '.') }}</td>
                             </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <button 
-                                        type="submit" 
-                                        class="btn-large red col l12 s12 m12 tooltipped" 
-                                        data-position="bottom" 
-                                        data-delay="50" 
-                                        data-tooltip="Cancelar itens selecionados">
-                                        Cancelar
-                                    </button>   
-                                </td>
-                                <td colspan="3"></td>
-                            </tr>
                         </tfoot>
                     </table>
                 </form>
             @empty
                 <h5 class="center">
                     @if ($cancelados->count() > 0)
-                        Neste momento não há nenhuma compra valida.
+                        Neste momento não há nenhum pedido valido.
                     @else
-                        Você ainda não fez nenhuma compra.
+                        Você ainda não fez nenhum pedido.
                     @endif
                 </h5>
             @endforelse
@@ -142,13 +129,13 @@
                             <th>Produto</th>
                             <th>Valor</th>
                             <th>Total</th>
-                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
                         @php
                             $totalPedido = 0;
                         @endphp
+
                         @foreach ($pedido->pedidoProdutoItens as $pedidoProduto)
                             @php
                                 $totalProduto = ($pedidoProduto->valor * $pedidoProduto->quantidade);
@@ -157,7 +144,7 @@
 
                             <tr>
                                 <td>
-                                    <img width="100" height="100" src="{{ $pedidoProduto->produto->imagem }}">
+                                     <img width="100" src="{{URL::asset('/image/uploads/produtos/')}}/{{ $pedidoProduto->produto->imagem }}">
                                 </td>
 
                                 <td>{{ $pedidoProduto->produto->quantidade }}</td>
@@ -167,16 +154,12 @@
                                 <td>R$ {{ number_format($pedidoProduto->valor, 2, ',', '.') }}</td>
                                 
                                 <td>R$ {{ number_format($totalProduto, 2, ',', '.') }}</td>
-
-                                <td>
-                                    
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="5"></td>
+                            <td colspan="3"></td>
                             <td><strong>Total do pedido</strong></td>
                             <td>R$ {{ number_format($totalPedido, 2, ',', '.') }}</td>
                         </tr>
