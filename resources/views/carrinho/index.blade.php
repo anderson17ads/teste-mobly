@@ -43,7 +43,7 @@
                 </a>
             </div>
         @else
-            <h5>Não há nenhum pedido no carrinho</h5>
+            <h5>Não há nenhum produto no carrinho</h5>
         @endif
     </div>
 </div>

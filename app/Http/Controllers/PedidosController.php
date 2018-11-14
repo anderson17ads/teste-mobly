@@ -22,7 +22,7 @@ class PedidosController extends Controller
             'status'  => 'PA',
             'user_id' => Auth::id()
         ])->orderBy('created_at', 'DESC')->get();
-        
+
         $cancelados = Pedido::where([
             'status'  => 'CA',
             'user_id' => Auth::id()

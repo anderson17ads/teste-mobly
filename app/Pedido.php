@@ -11,15 +11,25 @@ class Pedido extends Model
         'status'
     ];
 
-	public function pedido_produtos()
+    /**
+     * Recupera o pedido com a soma total e quantidade de produtos
+     *
+     * @return array
+     */
+	public function pedidoProdutos()
     {
         return $this->hasMany('App\PedidoProduto')
             ->select( \DB::raw('produto_id, sum(valor) as valores, count(1) as qtd') )
             ->groupBy('produto_id')
-            ->orderBy('produto_id', 'desc');
+            ->orderBy('produto_id', 'DESC');
     }
 
-    public function pedido_produtos_itens()
+    /**
+     * Carregando os produtos relacionados
+     *
+     * @return array
+     */
+    public function pedidoProdutoItens()
     {
         return $this->hasMany('App\PedidoProduto');
     }    

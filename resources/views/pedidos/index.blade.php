@@ -1,0 +1,158 @@
+@extends('layout')
+@section('pagina_titulo', 'Pedidos' )
+
+@section('pagina_conteudo')
+
+<div class="container">
+    <div class="row">
+        <h3>Meus Pedidos</h3>
+        
+        @if (Session::has('mensagem-sucesso'))
+            <div class="card-panel green">{{ Session::get('mensagem-sucesso') }}</div>
+        @endif
+        
+        @if (Session::has('mensagem-falha'))
+            <div class="card-panel red">{{ Session::get('mensagem-falha') }}</div>
+        @endif
+        
+        <div class="divider"></div>
+        
+        <div class="row col s12 m12 l12">
+            <h4>Pedidos concluídos</h4>
+            
+            @forelse ($pedidos as $pedido)
+                <h5 class="col l6 s12 m6"> Pedido: {{ $pedido->id }} </h5>
+                
+                <h5 class="col l6 s12 m6"> Criado em: {{ $pedido->created_at->format('d/m/Y H:i') }} </h5>
+                
+                <form method="POST" action="{{ route('pedidos.cancelar') }}">
+                    {{ csrf_field() }}
+                    
+                    <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="2"></th>
+                                <th>Produto</th>
+                                <th>Valor</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                        @php
+                            $totalPedido = 0;
+                        @endphp
+
+                        @foreach ($pedido->pedidoProdutoItens as $pedidoProduto)
+                            @php
+                                $totalProduto = $pedidoProduto->valor - $pedidoProduto->desconto;
+                                $totalPedido += $totalProduto;
+                            @endphp
+
+                            <tr>
+                                <td class="center">
+                                    @if($pedidoProduto->status == 'PA')
+                                        <p class="center">
+                                            <input type="checkbox" id="item-{{ $pedidoProduto->id }}" name="id[]" value="{{ $pedidoProduto->id }}" />
+                                            <label for="item-{{ $pedidoProduto->id }}">Selecionar</label>
+                                        </p>
+                                    @else
+                                        <strong class="red-text">CANCELADO</strong>
+                                    @endif
+                                </td>
+                                <td>
+                                    <img width="100" src="{{URL::asset('/image/uploads/produtos/')}}/{{ $pedidoProduto->produto->imagem }}">
+                                </td>
+                                <td>{{ $pedidoProduto->produto->nome }}</td>
+                                <td>R$ {{ number_format($pedidoProduto->valor, 2, ',', '.') }}</td>
+                                <td>R$ {{ number_format($totalProduto, 2, ',', '.') }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3"></td>
+                                <td><strong>Total do pedido</strong></td>
+                                <td>R$ {{ number_format($totalPedido, 2, ',', '.') }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button 
+                                        type="submit" 
+                                        class="btn-large red col l12 s12 m12 tooltipped" 
+                                        data-position="bottom" 
+                                        data-delay="50" 
+                                        data-tooltip="Cancelar itens selecionados">
+                                        Cancelar
+                                    </button>   
+                                </td>
+                                <td colspan="3"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            @empty
+                <h5 class="center">
+                    @if ($cancelados->count() > 0)
+                        Neste momento não há nenhuma compra valida.
+                    @else
+                        Você ainda não fez nenhuma compra.
+                    @endif
+                </h5>
+            @endforelse
+        </div>
+        <div class="row col s12 m12 l12">
+            <div class="divider"></div>
+            <h4>Compras canceladas</h4>
+            @forelse ($cancelados as $pedido)
+                <h5 class="col l2 s12 m2"> Pedido: {{ $pedido->id }} </h5>
+                <h5 class="col l5 s12 m5"> Criado em: {{ $pedido->created_at->format('d/m/Y H:i') }} </h5>
+                <h5 class="col l5 s12 m5"> Cancelado em: {{ $pedido->updated_at->format('d/m/Y H:i') }} </h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Produto</th>
+                            <th>Valor</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $totalPedido = 0;
+                        @endphp
+                        @foreach ($pedido->pedidoProdutoItens as $pedidoProduto)
+                            @php
+                                $totalProduto = $pedidoProduto->valor - $pedidoProduto->desconto;
+                                $totalPedido += $totalProduto;
+                            @endphp
+                        <tr>
+                            <td>
+                                <img width="100" height="100" src="{{ $pedidoProduto->produto->imagem }}">
+                            </td>
+                            <td>{{ $pedidoProduto->produto->nome }}</td>
+                            <td>R$ {{ number_format($pedidoProduto->valor, 2, ',', '.') }}</td>
+                            
+                            <td>R$ {{ number_format($totalProduto, 2, ',', '.') }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td><strong>Total do pedido</strong></td>
+                            <td>R$ {{ number_format($totalPedido, 2, ',', '.') }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            @empty
+                <h5 class="center">Nenhum pedido ainda foi cancelado.</h5>
+            @endforelse
+        </div>
+    </div>
+
+</div>
+
+@endsection
