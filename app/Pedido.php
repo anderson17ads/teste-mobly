@@ -32,5 +32,15 @@ class Pedido extends Model
     public function pedidoProdutoItens()
     {
         return $this->hasMany('App\PedidoProduto');
-    }    
+    }
+
+    /**
+     * Recupera o endereço de entrega
+     *
+     * @return array
+     */    
+    public function enderecoEntrega()
+    {
+        return $this->hasOne('App\PedidoEndereco');
+    }
 }

@@ -31,6 +31,19 @@ class PedidosController extends Controller
         return view('pedidos.index', compact('pedidos', 'cancelados'));
     }
 
+    public function detalhe($id = null)
+    {
+        $pedido = Pedido::where([
+            'id' => $id
+        ])->first();
+
+        // dd($pedido->enderecoEntrega);
+        
+        if (!$pedido) return redirect()->route('pedidos.index');
+
+        return view('pedidos.detalhe', compact('pedido'));
+    }
+
     public function dados(Request $request)
     {
         $itens = ($request->session()->has('Carrinho'))

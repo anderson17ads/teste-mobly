@@ -33,6 +33,8 @@ Route::post('/pedidos/concluir', 'PedidosController@concluir')->name('pedidos.co
 
 Route::get('/pedidos/index', 'PedidosController@index')->name('pedidos.index');
 
+Route::get('/pedidos/detalhe/{id}', 'PedidosController@detalhe')->name('pedidos.detalhe');
+
 Route::post('/pedidos/cancelar', 'PedidosController@cancelar')->name('pedidos.cancelar');
 
 Auth::routes();

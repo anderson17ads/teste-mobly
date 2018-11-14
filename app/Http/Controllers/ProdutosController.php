@@ -9,7 +9,7 @@ class ProdutosController extends Controller
 {
     public function view($id = null)
     {
-		if( !empty($id) ) {
+		if(!empty($id)) {
 			$produto = Produto::where([
 				'id'    => $id,
 			])->first();
